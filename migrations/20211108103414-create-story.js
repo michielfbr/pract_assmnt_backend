@@ -8,10 +8,8 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      id: {
-        type: Sequelize.INTEGER
-      },
       name: {
+        allowNull: false,
         type: Sequelize.STRING
       },
       content: {
@@ -20,13 +18,8 @@ module.exports = {
       imageUrl: {
         type: Sequelize.STRING
       },
-      createdAt: {
-        type: Sequelize.DATE
-      },
-      updatedAt: {
-        type: Sequelize.DATE
-      },
       spaceId: {
+        allowNull: false,
         type: Sequelize.INTEGER,
         references: {
           model: "spaces",

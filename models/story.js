@@ -15,6 +15,7 @@ module.exports = (sequelize, DataTypes) => {
   };
   story.init({
     name: {
+      allowNull: false,
       type: DataTypes.STRING
     },
     content: {
@@ -24,6 +25,7 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.STRING
     },
     spaceId: {
+      allowNull: false,
       type: DataTypes.INTEGER
     }
   }, {
