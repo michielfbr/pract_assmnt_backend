@@ -6,8 +6,8 @@ module.exports = {
       "spaces",
       [
         {
-          title: "Awesome Title",
-          description: "The title is simply awesome",
+          title: "Awesome Space",
+          description: "A simply amazing space",
           backgroundColor: "#ffffff",
           color: "#000000",
           userId: 1,
@@ -15,8 +15,8 @@ module.exports = {
           updatedAt: new Date(),
         },
         {
-          title: "Awesomer Title",
-          description: "This title is even more awesome",
+          title: "Awesomer Space",
+          description: "This space is even more awesome",
           backgroundColor: "#ffffff",
           color: "#000000",
           userId: 2,
