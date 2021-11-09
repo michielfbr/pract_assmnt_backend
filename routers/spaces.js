@@ -34,26 +34,26 @@ router.get("/:spaceId", async (req, res, next) => {
 });
 
 // Create new space
-router.post("/", async (request, response, next) => {
-  try {
-    const { title, description, backgroundColor, color, userId } = request.body;
-    console.log(request.body);
-    if (!title || !userId ) {
-      response.status(400).send("Need more info than this to create your Space mate.");
-    } else {
-      const newSpace = await Space.create({
-        title,
-        description,
-        backgroundColor,
-        color,
-        userId
-      });
-      response.status(201).send(newSpace);
-    }
-  } catch (e) {
-    next(e);
-}
-});
+// router.post("/", async (request, response, next) => {
+//   try {
+//     const { title, description, backgroundColor, color, userId } = request.body;
+//     console.log(request.body);
+//     if (!title || !userId ) {
+//       response.status(400).send("Need more info than this to create your Space mate.");
+//     } else {
+//       const newSpace = await Space.create({
+//         title,
+//         description,
+//         backgroundColor,
+//         color,
+//         userId
+//       });
+//       response.status(201).send(newSpace);
+//     }
+//   } catch (e) {
+//     next(e);
+// }
+// });
 
 
 module.exports = router;

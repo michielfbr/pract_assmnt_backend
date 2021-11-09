@@ -28,7 +28,8 @@ router.post("/login", async (req, res, next) => {
 
     delete user.dataValues["password"]; // don't send back the password hash
     const token = toJWT({ userId: user.id });
-    return res.status(200).send({ token, ...user.dataValues });
+    const userSpace = await Space.findByPk(user.id);
+    return res.status(200).send({ token, ...user.dataValues, userSpace });
   } catch (error) {
     console.log(error);
     return res.status(400).send({ message: "Something went wrong, sorry" });
@@ -50,7 +51,7 @@ router.post("/signup", async (req, res) => {
 
     delete newUser.dataValues["password"]; // don't send back the password hash
     const token = toJWT({ userId: newUser.id });
-
+// newUser als creates newSpace
     const newSpace = await Space.create({
       title: `${newUser.name}'s space`,
       userId: newUser.id
@@ -82,7 +83,8 @@ router.post("/signup", async (req, res) => {
 router.get("/me", authMiddleware, async (req, res) => {
   // don't send back the password hash
   delete req.user.dataValues["password"];
-  res.status(200).send({ ...req.user.dataValues });
+  const userSpace = await Space.findByPk(req.user.id);
+  res.status(200).send({ ...req.user.dataValues, userSpace });
 });
 
 module.exports = router;
