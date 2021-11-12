@@ -1,6 +1,7 @@
 const { Router } = require("express");
 const Story = require("../models/").story;
 const router = new Router();
+const authMiddleware = require("../auth/middleware");
 
 // Get all stories
 router.get("/", async (req, res, next) => {
@@ -43,7 +44,7 @@ router.delete("/:id", async (req, res, next) => {
 });
 
 // Create a story
-router.post("/", async (req, res, next) => {
+router.post("/", authMiddleware, async (req, res, next) => {
   try {
     const { name, content, imageUrl, spaceId } = req.body;
     console.log(req.body);

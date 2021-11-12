@@ -33,6 +33,32 @@ router.get("/:spaceId", async (req, res, next) => {
   }
 });
 
+// Update a space
+router.put("/:spaceId", async (req, res, next) => {
+  try {
+    const spaceId = parseInt(req.params.spaceId);
+    const { title, description, backgroundColor, color } = req.body;
+    const spaceToUpdate = await Space.findByPk(spaceId);
+    console.log("spaces.js: req.body:", req.body)
+    if (!title ) {
+      res.status(400).send("Space requires a title.");
+    } else if (!spaceToUpdate) {
+      res.status(404).send("Space not found");
+    } else {
+      const updatedSpace = await spaceToUpdate.update({
+                spaceId,
+                title,
+                description,
+                backgroundColor,
+                color
+              });
+      res.json(updatedSpace);
+    }
+  } catch (e) {
+    next(e);
+  }
+});
+
 // Create new space
 // router.post("/", async (request, response, next) => {
 //   try {
@@ -54,6 +80,5 @@ router.get("/:spaceId", async (req, res, next) => {
 //     next(e);
 // }
 // });
-
 
 module.exports = router;
